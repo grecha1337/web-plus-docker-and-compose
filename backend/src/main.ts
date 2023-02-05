@@ -7,4 +7,5 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await app.listen(3000);
 }
+console.log('POSTGRES_USER', process.env.POSTGRES_USER);
 bootstrap();

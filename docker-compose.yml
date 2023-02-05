@@ -4,11 +4,11 @@ networks:
     driver: bridge
     internal: true
   internet:
-    driver: bridge 
+    driver: bridge
 services:
   backend:
     container_name: backend
-    build: 
+    build:
       context: ./backend
       dockerfile: Dockerfile
     image: "backend"
@@ -16,6 +16,8 @@ services:
     ports:
       - "4000:3000"
     depends_on:
+      - postgres
+    links:
       - postgres
     env_file:
       - ./.env
@@ -29,3 +31,7 @@ services:
       - "5432:5432"
     env_file:
       - ./.env
+    volumes:
+      - pgdata:${POSTGRES_PGDATA}
+volumes:
+  pgdata:

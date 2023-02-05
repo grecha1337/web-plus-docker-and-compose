@@ -13,12 +13,12 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import 'dotenv/config';
 
+console.log('POSTGRES_USER', process.env.POSTGRES_USER);
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: `${process.env.POSTGRES_HOST}`,
       port: +`${process.env.POSTGRES_PORT}`,
       username: `${process.env.POSTGRES_USER}`,
       password: `${process.env.POSTGRES_PASSWORD}`,
