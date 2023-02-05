@@ -3,8 +3,6 @@ networks:
   internal-network:
     driver: bridge
     internal: true
-  internet:
-    driver: bridge
 services:
   backend:
     container_name: backend
@@ -21,13 +19,13 @@ services:
       - postgres
     env_file:
       - ./.env
+    networks:
+      - internal-network
   postgres:
     container_name: postgres
     image: "postgres:13"
     restart: on-failure
     networks:
       - internal-network
-    ports:
-      - "5432:5432"
     env_file:
       - ./.env
