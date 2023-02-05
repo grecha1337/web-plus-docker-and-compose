@@ -31,7 +31,3 @@ services:
       - "5432:5432"
     env_file:
       - ./.env
-    volumes:
-      - pgdata:${POSTGRES_PGDATA}
-volumes:
-  pgdata:
