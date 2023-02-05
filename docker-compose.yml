@@ -1,0 +1,31 @@
+version: "3.9"
+networks:
+  internal-network:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge 
+services:
+  backend:
+    container_name: backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    image: "backend"
+    restart: "on-failure"
+    ports:
+      - "4000:3000"
+    depends_on:
+      - postgres
+    env_file:
+      - ./.env
+  postgres:
+    container_name: postgres
+    image: "postgres:13"
+    restart: on-failure
+    networks:
+      - internal-network
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
