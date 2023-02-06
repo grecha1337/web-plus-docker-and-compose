@@ -29,3 +29,14 @@ services:
       - internal-network
     env_file:
       - ./.env
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: "frontend"
+    restart: "on-failure"
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
