@@ -3,6 +3,8 @@ networks:
   internal-network:
     driver: bridge
     internal: true
+  frontend-backend:
+    driver: bridge
 services:
   backend:
     container_name: backend
@@ -21,6 +23,7 @@ services:
       - ./.env
     networks:
       - internal-network
+      - frontend-backend
   postgres:
     container_name: postgres
     image: "postgres:13"
@@ -40,3 +43,5 @@ services:
       - "8081:80"
     depends_on:
       - backend
+    networks:
+      - frontend-backend
