@@ -5,9 +5,10 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    allowedHeaders: ['content-type'],
+    allowedHeaders: '*',
     origin: [
       'http://localhost:3000',
+      'http://localhost:8081',
       'https://mysuperfront.students.nomoredomains.icu',
     ],
     credentials: true,
