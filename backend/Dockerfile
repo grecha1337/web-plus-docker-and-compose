@@ -15,5 +15,5 @@ COPY --from=builder /app/package*.json ./
 RUN npm i --omit=dev 
 COPY --from=builder /app/dist ./dist/
 
-EXPOSE 4000
+EXPOSE 3000
 CMD [ "pm2-runtime", "start", "/app/dist/main.js"]
