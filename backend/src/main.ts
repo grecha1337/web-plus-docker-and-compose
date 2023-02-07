@@ -4,15 +4,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    allowedHeaders: '*',
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:8081',
-      'https://mysuperfront.students.nomoredomains.icu',
-    ],
-    credentials: true,
-  });
+  app.enableCors();
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await app.listen(3000);
 }
