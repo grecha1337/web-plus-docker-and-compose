@@ -32,6 +32,8 @@ services:
       - internal-network
     env_file:
       - ./.env
+    volumes:
+      - ${PGDATA}
   frontend:
     container_name: frontend
     build:
